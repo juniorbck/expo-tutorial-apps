@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -16,6 +16,8 @@ import EmojiSticker from './components/EmojiSticker';
 const PlaceholderImage = require('./assets/images/background-image.png');
 
 export default function App() {
+  const imageRef = useRef();
+  
   const [status, requestPermission] = MediaLibrary.usePermissions();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showAppOptions, setShowAppOptions] = useState(false);
@@ -51,7 +53,7 @@ export default function App() {
   const onSaveImageAsync = async () => {
     // we will implement this later
   };
-  
+
   if (status === null) {
     requestPermission();
   }
@@ -59,8 +61,10 @@ export default function App() {
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
+        <View ref={imageRef} collapsable={false}>
+          <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
           {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />}
+        </View>
       </View>      
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
