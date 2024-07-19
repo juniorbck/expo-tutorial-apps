@@ -9,7 +9,7 @@ import * as ImagePicker from 'expo-image-picker';
 const PlaceholderImage = require('./assets/images/background-image.png');
 
 export default function App() {
-  
+
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -29,7 +29,7 @@ export default function App() {
         <ImageViewer placeholderImageSource={PlaceholderImage} />
       </View>
       <View style={styles.footerContainer}>
-        <Button theme="primary" label="Choose a photo" />
+        <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
         <Button label="Use this photo" />
       </View>
       <StatusBar style="auto" />
