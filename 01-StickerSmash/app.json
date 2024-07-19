@@ -1,4 +1,9 @@
 {
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#25292e" 
+  },
   "expo": {
     "name": "01-StickerSmash",
     "slug": "01-StickerSmash",
